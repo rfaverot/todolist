@@ -1,10 +1,10 @@
 var app = new Vue({
 	el : "#app",
 	
-		methods : { //ajouter des actions des événements
+		methods : {
 		
 		adTaches() {
-			this.taches.push({nom: this.nouvelleTache, fait: false,}) // "This" c'est pour dire que ça provient de data
+			this.taches.push({nom: this.nouvelleTache, fait: false,})
 			this.nouvelleTache=""
 		}
 	},
