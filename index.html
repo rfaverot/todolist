@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>ToDo list !</title>
+	<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.1/dist/css/foundation.min.css" integrity="sha256-1mcRjtAxlSjp6XJBgrBeeCORfBp/ppyX4tsvpQVCcpA= sha384-b5S5X654rX3Wo6z5/hnQ4GBmKuIJKMPwrJXn52ypjztlnDK2w9+9hSMBz/asy9Gw sha512-M1VveR2JGzpgWHb0elGqPTltHK3xbvu3Brgjfg4cg5ZNtyyApxw/45yHYsZ/rCVbfoO5MSZxB241wWq642jLtA==" crossorigin="anonymous">
+	<style>
+		.h1,
+		.h2,
+		.h3,
+		.h4,
+		.h5,
+		.h6,
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			font-family: 'Pacifico';
+			font-style: normal;
+			font-weight: 400;
+			color: inherit;
+			text-rendering: optimizeLegibility;
+		}
+		
+		thead {
+			background-color: #7BBFEB;
+		}
+		
+		h1 {
+			font-size: 10em;
+			color: #7BBFEB;
+			margin: 80px;
+		}
+		
+		h2 {
+			font-size: 5em;
+			color: white;
+		}
+		
+		h3 {
+			color: #7BBFEB;
+		}
+		
+		body {
+			font-family: 'Pacifico';
+		}
+		
+		input:checked~.switch-paddle {
+			background: #5DCC4B;
+		}
+		
+		.button {
+			background-color: #7BBFEB;
+		}
+		
+		.button:focus,
+		.button:hover {
+			background-color: #4f94bb;
+		}
+		
+		tbody td,
+		tbody th {
+			padding: 50px;
+			font-family: 'Pacifico';
+		}
+		
+		table,
+		th,
+		td {
+			border: 1px solid #4f94bb;
+			font-family: 'Pacifico';
+		}
+		
+		.switch-paddle {
+			background-color: #A50C0C;
+			border-radius: 20px;
+		}
+		
+		.switch-paddle::after {
+			border-radius: 20px;
+		}
+		
+		.nombre {
+			color: #7BBFEB;
+			font-size: 2em;
+		}
+		
+		[type=text] {
+			color: #7BBFEB;
+		}
+		
+		.input-group-field {
+			font-size: 1.5em;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div id="app" class="grid-container">
+		<div class="text-center cell small-12">
+			<h1>{{title}}</h1></div>
+
+
+
+		<br>
+
+		<table>
+			<thead>
+				<tr>
+					<th width="150" class="text-center align-middle">
+						<h2>Tâches</h2>
+					</th>
+					<th width="200" class="text-center align-middle">
+						<h2>Etat</h2>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="a in taches" :style="'text-decoration:' + [a.fait ? 'line-through #5DCC4B' : 'underline #A50C0C']">
+					<td class="text-center align-middle">
+						<h3>{{a.nom}}</h3>
+					</td>
+					<td class="text-center align-middle">
+						<div class="switch">
+							<input class="switch-input" :id="a.nom" type="checkbox" v-model="a.fait">
+							<label class="switch-paddle" :for="a.nom">
+								<span class="show-for-sr">Bulbasaur</span>
+							</label>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div class="grid-x grid-padding-x align-center-middle nombre" style="height: 75px;">
+			<div class="cell small-6 text-left">Nombre de tâches : </div>
+			<div class="cell small-6 text-center">{{ taches.length }}</div>
+		</div>
+
+		<hr>
+
+
+		<div class="input-group">
+			<input class="input-group-field" type="text" placeholder="Votre nouvelle tâche..." v-model="nouvelleTache">
+			<div class="input-group-button">
+				<button class="button" v-on:click="adTaches()">Ajouter !</button>
+			</div>
+		</div>
+
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="./todoapp.js"></script>
+</body>
+
+
+
+</html>
